@@ -46,4 +46,5 @@ func _physics_process(delta):
 		get_parent().add_child(bullet)
 		bullet.global_rotation = $Position2D_Center.global_rotation
 		bullet.global_position = $Position2D_Center.global_position
-#		bullet.position += transform.x * bullet.half_width
+
+		bullet.apply_central_impulse(Vector2.RIGHT.rotated(rotation) * 600)

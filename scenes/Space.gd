@@ -30,8 +30,6 @@ func _on_Timer_timeout():
 
 	# scale it
 	var scaling = randf()*3 + 0.5
-	print(scaling)
-	print(astroid.scale)
 	astroid.scale = Vector2(scaling, scaling)
 	astroid.mass *= scaling
 

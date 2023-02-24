@@ -10,7 +10,7 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -71, -57, 47, -57, 47, -41, 72, -25, 91, -7, 91, 5, 77, 24, 47, 42, 47, 59, -72, 58, -72, 42, -79, 27, -88, 13, -89, -7, -81, -25, -71, -42 )
+polygon = PoolVector2Array( -53, -44, -26, -27, 54, 1, -25, 27, -53, 44, -46, 1 )
 
 [node name="Position2D_Center" type="Position2D" parent="."]
-position = Vector2( 92, 0 )
+position = Vector2( 78, 0 )
