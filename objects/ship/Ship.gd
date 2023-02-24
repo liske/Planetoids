@@ -12,8 +12,6 @@ export (float) var rotation_speed = 3.5
 
 export (float) var slow_down = 0.005
 
-onready var viewport_size = get_viewport_rect().size
-
 func _on_Laser_body_entered(body : Node):
 	# do not react when hitting the ship
 	if body != self:
@@ -41,12 +39,6 @@ func _physics_process(delta):
 	rotation += rotation_direction * rotation_speed * delta
 	velocity = move_and_slide(velocity)
 
-	var half_height : int = $Sprite.texture.get_height()/4
-	var half_width : int = $Sprite.texture.get_width()/4
-
-	position.x = wrapf(position.x, -half_width, viewport_size.x + half_width)
-	position.y = wrapf(position.y, -half_height, viewport_size.y + half_height)
-
 	if Input.is_action_just_pressed("shoot"):
 		var bullet = Bullet.instance()
 		get_parent().add_child(bullet)
@@ -55,3 +47,11 @@ func _physics_process(delta):
 
 		bullet.apply_central_impulse(Vector2.RIGHT.rotated(rotation) * 600)
 		bullet.connect("body_entered", self, "_on_Laser_body_entered")
+
+func _on_VisibilityNotifier2D_screen_exited():
+	var viewport_size = get_viewport_rect().size
+	var half_height : int = $Sprite.texture.get_height()/4
+	var half_width : int = $Sprite.texture.get_width()/4
+
+	position.x = wrapf(position.x, -half_width, viewport_size.x + half_width)
+	position.y = wrapf(position.y, -half_height, viewport_size.y + half_height)

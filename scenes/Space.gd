@@ -10,13 +10,25 @@ var ASTROID_OFFSET = -200
 
 onready var viewport_size = get_viewport_rect().size
 
+func _ready():
+	get_tree().get_root().connect("size_changed", self, "viewport_changed")
+
+func viewport_changed():
+	viewport_size = get_viewport_rect().size
+
 func _on_Timer_timeout():
 	var sector = randi() % 4
 	var astroid = astroids[randi() % astroids.size()].instance()
-	add_child(astroid)
 
 	# rotate randomly
 	astroid.rotation_degrees = randi() % 360
+
+	# scale it
+	var scaling = randf()*3 + 0.5
+	astroid.scale = Vector2(scaling, scaling)
+	astroid.mass *= scaling
+
+	add_child(astroid)
 
 	# put astroid behind viewport borders
 	if sector == 0:
@@ -27,11 +39,6 @@ func _on_Timer_timeout():
 		astroid.global_position = Vector2(randi() % int(viewport_size.x), viewport_size.y - ASTROID_OFFSET)
 	else:
 		astroid.global_position = Vector2(ASTROID_OFFSET, randi() % int(viewport_size.y))
-
-	# scale it
-	var scaling = randf()*3 + 0.5
-	astroid.scale = Vector2(scaling, scaling)
-	astroid.mass *= scaling
 
 	# it should try to hit the space ship
 	astroid.apply_central_impulse(
