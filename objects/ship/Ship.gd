@@ -11,11 +11,13 @@ export (float) var rotation_speed = 3.5
 
 export (float) var slow_down = 0.005
 
-func _on_Laser_body_entered(body : Node):
+signal laser_has_hit
+
+func _on_Laser_body_entered(body : Node, bullet):
 	# do not react when hitting the ship
 	if body != self:
-		print(body)
-		body.queue_free()
+		bullet.queue_free()
+		emit_signal("laser_has_hit", body)
 
 func _physics_process(delta):
 	rotation_direction = 0
@@ -49,7 +51,7 @@ func _physics_process(delta):
 		bullet.global_position = $Position2D_Center.global_position
 
 		bullet.apply_central_impulse(Vector2.RIGHT.rotated(rotation) * 600)
-		bullet.connect("body_entered", self, "_on_Laser_body_entered")
+		bullet.connect("body_entered", self, "_on_Laser_body_entered", [bullet])
 
 func _on_VisibilityNotifier2D_screen_exited():
 	var viewport_size = get_viewport_rect().size

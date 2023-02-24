@@ -29,4 +29,5 @@ environment = SubResource( 1 )
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
+[connection signal="laser_has_hit" from="Ship" to="." method="_on_Ship_laser_has_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

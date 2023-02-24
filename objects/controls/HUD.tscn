@@ -39,7 +39,7 @@ valign = 1
 margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 2 )
-text = "000000"
+text = "-"
 
 [node name="Lives" type="Label" parent="."]
 margin_left = 1135.0
@@ -48,5 +48,5 @@ margin_right = 1279.0
 margin_bottom = 32.0
 grow_horizontal = 0
 custom_fonts/font = ExtResource( 2 )
-text = "ooo"
+text = "-"
 align = 2
