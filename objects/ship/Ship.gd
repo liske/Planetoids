@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 onready var Bullet = preload("res://objects/weapon/Laser.tscn")
 
-var input_vector : Vector2
 var velocity : Vector2
 export (int) var acceleration = 300
 export (int) var max_speed = 500
@@ -25,14 +24,18 @@ func _physics_process(delta):
 	if Input.is_action_pressed("rotate_right"):
 		rotation_direction += 1
 	
-	input_vector.x = clamp(Input.get_action_strength("boost"), 0, max_speed)
-	
-	if input_vector.x == 0 && velocity != Vector2.ZERO:
+	var boost = clamp(Input.get_action_strength("boost"), 0, max_speed)
+
+	$Sprite/CPUParticles2D.emitting = boost > 0
+	if $Sprite/CPUParticles2D.emitting:
+		$Sprite/CPUParticles2D.speed_scale = max_speed/boost * 2
+
+	if boost == 0 && velocity != Vector2.ZERO:
 		velocity = lerp(velocity, Vector2.ZERO, slow_down)
 		if abs(velocity.x) <= 0.1 && abs(velocity.y) <= 0:
 			velocity = Vector2.ZERO
 	else:
-		velocity += Vector2(input_vector.x * acceleration * delta, 0).rotated(rotation)
+		velocity += Vector2(boost * acceleration * delta, 0).rotated(rotation)
 		velocity.x = clamp(velocity.x, -max_speed, max_speed)
 		velocity.y = clamp(velocity.y, -max_speed, max_speed)
 
