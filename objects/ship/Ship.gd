@@ -14,6 +14,12 @@ export (float) var slow_down = 0.005
 
 onready var viewport_size = get_viewport_rect().size
 
+func _on_Laser_body_entered(body : Node):
+	# do not react when hitting the ship
+	if body != self:
+		print(body)
+		body.queue_free()
+
 func _physics_process(delta):
 	rotation_direction = 0
 	if Input.is_action_pressed("rotate_left"):
@@ -48,3 +54,4 @@ func _physics_process(delta):
 		bullet.global_position = $Position2D_Center.global_position
 
 		bullet.apply_central_impulse(Vector2.RIGHT.rotated(rotation) * 600)
+		bullet.connect("body_entered", self, "_on_Laser_body_entered")

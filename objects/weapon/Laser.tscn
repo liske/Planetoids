@@ -5,6 +5,8 @@
 
 [node name="Laser" type="RigidBody2D"]
 mass = 65535.0
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
