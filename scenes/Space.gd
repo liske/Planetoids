@@ -7,6 +7,7 @@ onready var astroids = [
 ]
 
 var ASTROID_OFFSET = -200
+var idle_game = true
 
 onready var viewport_size = get_viewport_rect().size
 
@@ -15,6 +16,10 @@ func _ready():
 
 func viewport_changed():
 	viewport_size = get_viewport_rect().size
+
+func _input(event):
+	if idle_game:
+		$HUD.show_start()
 
 func _on_Timer_timeout():
 	var sector = randi() % 4

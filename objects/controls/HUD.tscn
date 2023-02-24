@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://objects/fonts/MajorMonoDisplay LARGE.tres" type="DynamicFont" id=1]
+[ext_resource path="res://objects/fonts/MajorMonoDisplay SMALL.tres" type="DynamicFont" id=2]
+[ext_resource path="res://objects/controls/HUD.gd" type="Script" id=3]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="MainMessage" type="Label" parent="."]
+margin_left = 398.0
+margin_top = 284.0
+margin_right = 868.0
+margin_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.74902, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "planetoids"
+align = 1
+valign = 1
+
+[node name="SubMessage" type="Label" parent="."]
+margin_left = 564.0
+margin_top = 433.0
+margin_right = 679.0
+margin_bottom = 447.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.74902, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "enter coin to start"
+align = 1
+valign = 1
+
+[node name="Score" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "000000"
+
+[node name="Lives" type="Label" parent="."]
+margin_left = 1135.0
+margin_top = -1.0
+margin_right = 1279.0
+margin_bottom = 32.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 2 )
+text = "ooo"
+align = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://objects/ship/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Space.gd" type="Script" id=2]
+[ext_resource path="res://objects/controls/HUD.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -16,7 +17,8 @@ glow_hdr_threshold = 0.0
 script = ExtResource( 2 )
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
-position = Vector2( 529, 283 )
+position = Vector2( 640, 540 )
+rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -24,5 +26,7 @@ autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
