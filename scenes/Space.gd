@@ -12,12 +12,13 @@ var idle_game = true
 onready var viewport_size = get_viewport_rect().size
 
 func _ready():
+# warning-ignore:return_value_discarded
 	get_tree().get_root().connect("size_changed", self, "viewport_changed")
 
 func viewport_changed():
 	viewport_size = get_viewport_rect().size
 
-func _input(event):
+func _input(_event):
 	if idle_game:
 		$HUD.show_start()
 
