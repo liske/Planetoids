@@ -10,9 +10,15 @@ func update_score(value):
 	$Score.text = "%06d" % value
 
 func show_idle():
-	$MainMessage.text = "planetoids"
-	$SubMessage.text = "1 cookie 1 play"
+	$AnimationPlayer.stop()
+
+	$AnimationPlayer/MainMessage.text = "planetoids"
+	$AnimationPlayer/SubMessage.text = "1 cookie 1 play"
+	$AnimationPlayer.play("Continuously")
 
 func show_start():
-	$MainMessage.text = "level #1"
-	$SubMessage.text = "to easy to fail"
+	$AnimationPlayer.stop()
+
+	$AnimationPlayer/MainMessage.text = "level #1"
+	$AnimationPlayer/SubMessage.text = "to easy to fail"
+	$AnimationPlayer.play("Single")
