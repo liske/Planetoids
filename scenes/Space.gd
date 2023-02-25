@@ -29,14 +29,14 @@ class Planetoids:
 		score = value
 		hud.update_score(value)
 
-	func _init(hud, ship):
-		self.hud = hud
-		self.ship = ship
+	func _init(_hud, _ship):
+		self.hud = _hud
+		self.ship = _ship
 
-	func idle():
+	func stop():
 		self.idle = true
 
-		hud.show_start()
+		hud.show_idle()
 
 		self.ship.visible = false
 		self.ship.collision_layer = 2
@@ -61,11 +61,6 @@ class Planetoids:
 		self.score += 10
 		body.queue_free()
 
-#var idle_game = true
-#var player_level : int setget _player_lives_set
-#var player_lives : int setget _player_lives_set
-#var player_score : int setget _player_score_set
-
 var planetoids : Planetoids
 
 onready var viewport_size = get_viewport_rect().size
@@ -79,7 +74,7 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "_viewport_changed")
 
 	planetoids = Planetoids.new($HUD, $Ship)
-	planetoids.idle()
+	planetoids.stop()
 
 func _viewport_changed():
 	# record current viewport size
