@@ -46,7 +46,6 @@ margin_left = 320.0
 margin_right = 960.0
 margin_bottom = 33.0
 grow_horizontal = 2
-custom_colors/font_color = Color( 1, 0.74902, 0, 1 )
 custom_fonts/font = ExtResource( 2 )
 align = 1
 

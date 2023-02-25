@@ -9,6 +9,10 @@ func update_lives(value):
 func update_score(value):
 	$Score.text = "%06d" % value
 
+func show_idle():
+	$MainMessage.text = "planetoids"
+	$SubMessage.text = "1 cookie 1 play"
+
 func show_start():
-	$MainMessage.text = "go!"
-	$SubMessage.text = "you won't survive"
+	$MainMessage.text = "level #1"
+	$SubMessage.text = "to easy to fail"
