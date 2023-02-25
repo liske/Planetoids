@@ -7,9 +7,66 @@ onready var astroids = [
 ]
 
 var ASTROID_OFFSET = -200
-var idle_game = true
-var player_score : int setget _player_score_set
-var player_lives : int setget _player_lives_set
+
+class Planetoids:
+	var idle : bool
+	var level: int setget _level_set
+	var lives: int setget _lives_set
+	var score: int setget _score_set
+
+	var hud
+	var ship
+
+	func _level_set(value):
+		level = value
+		hud.update_level(value)
+
+	func _lives_set(value):
+		lives = value
+		hud.update_lives(value)
+
+	func _score_set(value):
+		score = value
+		hud.update_score(value)
+
+	func _init(hud, ship):
+		self.hud = hud
+		self.ship = ship
+
+	func idle():
+		self.idle = true
+
+		hud.show_start()
+
+		self.ship.visible = false
+		self.ship.collision_layer = 2
+		self.ship.collision_mask = 0
+		self.ship.position.x = 640
+		self.ship.position.y = 360
+
+	func start():
+		self.idle = false
+
+		self.level = 1
+		self.lives = 3
+		self.score = 0
+
+		self.hud.show_start()
+
+		self.ship.visible = true
+		self.ship.collision_layer = 1
+		self.ship.collision_mask = 1
+
+	func weapon_hit(body):
+		self.score += 10
+		body.queue_free()
+
+#var idle_game = true
+#var player_level : int setget _player_lives_set
+#var player_lives : int setget _player_lives_set
+#var player_score : int setget _player_score_set
+
+var planetoids : Planetoids
 
 onready var viewport_size = get_viewport_rect().size
 
@@ -21,22 +78,17 @@ func _ready():
 	# handle viewport resizing
 	get_tree().get_root().connect("size_changed", self, "_viewport_changed")
 
-func _player_score_set(value):
-	player_score = value
-	$HUD.update_score(value)
-
-func _player_lives_set(value):
-	player_lives = value
-	$HUD.update_lives(value)
+	planetoids = Planetoids.new($HUD, $Ship)
+	planetoids.idle()
 
 func _viewport_changed():
 	# record current viewport size
 	viewport_size = get_viewport_rect().size
 
 func _input(_event):
-	if idle_game:
+	if planetoids.idle:
 		if Input.is_action_just_pressed("shoot"):
-			start_game()
+			planetoids.start()
 
 func _on_Timer_timeout():
 	var sector = randi() % 4
@@ -69,11 +121,4 @@ func _on_Timer_timeout():
 	astroid.add_torque(-400 + randi() % 800)
 
 func _on_Ship_laser_has_hit(body):
-	self.player_score += 10
-	body.queue_free()
-
-func start_game():
-	idle_game = false
-	self.player_score = 0
-	self.player_lives = 3
-	$HUD.show_start()
+	planetoids.weapon_hit(body)
