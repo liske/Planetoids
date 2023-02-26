@@ -21,7 +21,7 @@ func _on_Laser_body_entered(body : Node, bullet):
 		emit_signal("laser_has_hit", body)
 
 var thrust = Vector2(30, 0)
-var torque = 300
+var t = 300
 
 func _integrate_forces(state):
 	if Input.is_action_pressed("boost"):
@@ -39,9 +39,9 @@ func _integrate_forces(state):
 		rotation_direction -= 1
 
 	if rotation_direction < 0 and angular_velocity > -4:
-		state.apply_torque_impulse(-torque)
+		state.apply_torque_impulse(-t)
 	if rotation_direction > 0 and angular_velocity < 4:
-		state.apply_torque_impulse(torque)
+		state.apply_torque_impulse(t)
 
 func _physics_process(_delta):
 	# wrap around screen edges

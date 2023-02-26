@@ -4,6 +4,7 @@
 [ext_resource path="res://objects/ship/Ship.gd" type="Script" id=2]
 
 [node name="Ship" type="RigidBody2D"]
+can_sleep = false
 linear_damp = 1.0
 angular_damp = 3.0
 script = ExtResource( 2 )
