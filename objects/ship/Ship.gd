@@ -44,6 +44,10 @@ func _integrate_forces(state):
 		state.apply_torque_impulse(torque)
 
 func _physics_process(_delta):
+	# wrap around screen edges
+	position.x = wrapf(position.x, 0, viewport_size.x)
+	position.y = wrapf(position.y, 0, viewport_size.y)
+
 	if Input.is_action_just_pressed("shoot"):
 		var bullet = Bullet.instance()
 		get_parent().add_child(bullet)
@@ -51,7 +55,3 @@ func _physics_process(_delta):
 		bullet.global_position = $Position2D_Gun.global_position
 		bullet.apply_central_impulse(Vector2.RIGHT.rotated(rotation) * 600)
 		bullet.connect("body_entered", self, "_on_Laser_body_entered", [bullet])
-
-func _on_VisibilityNotifier2D_screen_exited():
-	position.x = wrapf(position.x, 0, viewport_size.x)
-	position.y = wrapf(position.y, 0, viewport_size.y)

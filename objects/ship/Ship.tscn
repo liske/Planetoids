@@ -35,9 +35,3 @@ polygon = PoolVector2Array( -26, -22, -12, -14, 28, -1, 28, 1, -13, 16, -26, 23,
 
 [node name="Position2D_Gun" type="Position2D" parent="."]
 position = Vector2( 48, 0 )
-
-[node name="Position2D_Center" type="Position2D" parent="."]
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Position2D_Center"]
-
-[connection signal="screen_exited" from="Position2D_Center/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
