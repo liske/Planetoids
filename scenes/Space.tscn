@@ -19,6 +19,7 @@ script = ExtResource( 2 )
 [node name="Ship" parent="." instance=ExtResource( 1 )]
 position = Vector2( 640, 360 )
 rotation = -0.785398
+contact_monitor = false
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

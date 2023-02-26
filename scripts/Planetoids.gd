@@ -152,3 +152,10 @@ func timer_timeout():
 		Vector2(200 + rng.randi() % 200, 0).rotated( self.ship.position.angle_to_point(astroid.position))
 	)
 	astroid.add_torque(-400 + rng.randi() % 800)
+
+func astroid_collision(target, astroid):
+	if target.name == "Ship":
+		self.lives -= 1
+		if lives == 0:
+			stop()
+

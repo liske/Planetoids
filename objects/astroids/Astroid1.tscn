@@ -5,6 +5,8 @@
 [ext_resource path="res://objects/astroids/Explosion.tscn" type="PackedScene" id=3]
 
 [node name="Astroid1" type="RigidBody2D"]
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
