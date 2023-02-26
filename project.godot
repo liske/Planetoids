@@ -14,6 +14,10 @@ config/name="Planetoids"
 run/main_scene="res://scenes/Space.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+planetoids="*res://scripts/Planetoids.gd"
+
 [display]
 
 window/size/width=1280

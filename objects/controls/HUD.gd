@@ -3,8 +3,10 @@ extends Control
 var level_submessages = [
 	"to easy to fail",
 	"most get this far",
+	"you better give up",
 	"you will stop now",
-	"this is a bug in the game"
+	"you shall not pass",
+	"you are a bug in the game"
 ]
 
 func update_level(value):

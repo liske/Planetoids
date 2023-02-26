@@ -12,13 +12,10 @@ export (int) var torque_impulse = 300
 
 onready var viewport_size = get_viewport_rect().size
 
-signal laser_has_hit
-
 func _on_Laser_body_entered(body : Node, bullet):
 	# do not react when hitting the ship
 	if body != self:
-		bullet.queue_free()
-		emit_signal("laser_has_hit", body)
+		planetoids.laser_hit_astroid(bullet, body)
 
 func _integrate_forces(state):
 	if Input.is_action_pressed("boost"):
