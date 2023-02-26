@@ -14,12 +14,18 @@ class Planetoids:
 	var level: int setget _level_set
 	var lives: int setget _lives_set
 	var score: int setget _score_set
+	var _level_score: int
 
 	var hud
 	var ship
 
 	func _level_set(value):
 		level = value
+		var n = 0
+		for i in range(1, level + 1):
+			n += i*100
+		_level_score = n
+
 		hud.update_level(value)
 
 	func _lives_set(value):
@@ -29,6 +35,9 @@ class Planetoids:
 	func _score_set(value):
 		score = value
 		hud.update_score(value)
+
+		if score > _level_score:
+			self.level += 1
 
 	func _init(_hud, _ship):
 		self.hud = _hud
@@ -67,8 +76,6 @@ class Planetoids:
 		self.level = 1
 		self.lives = 3
 		self.score = 0
-
-		self.hud.show_start()
 
 		self.ship.visible = true
 		self.ship.collision_layer = 1
