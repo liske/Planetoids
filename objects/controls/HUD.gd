@@ -9,6 +9,12 @@ func update_lives(value):
 func update_score(value):
 	$Score.text = "%06d" % value
 
+func set_footer_left(text):
+	$FooterLeft.text = text
+
+func set_footer_right(text):
+	$FooterRight.text = text
+
 func show_idle():
 	$AnimationPlayer.stop()
 

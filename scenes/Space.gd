@@ -9,6 +9,7 @@ onready var astroids = [
 var ASTROID_OFFSET = -200
 
 class Planetoids:
+	var config: ConfigFile
 	var idle : bool
 	var level: int setget _level_set
 	var lives: int setget _lives_set
@@ -32,6 +33,22 @@ class Planetoids:
 	func _init(_hud, _ship):
 		self.hud = _hud
 		self.ship = _ship
+
+		self.config = ConfigFile.new()
+
+		# load config
+		var err = config.load("user://planetoids.cfg")
+
+		# set defaults if not found
+		if err != OK:
+			config.set_value("footer", "left", "")
+			config.set_value("footer", "right", "")
+			# warning-ignore:return_value_discarded
+			config.save("user://planetoids.cfg")
+
+		# read hud configuration
+		self.hud.set_footer_left(config.get_value("footer", "left", ""))
+		self.hud.set_footer_right(config.get_value("footer", "right", ""))
 
 	func stop():
 		self.idle = true
