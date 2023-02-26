@@ -92,6 +92,9 @@ func start():
 	self.ship.collision_layer = 1
 	self.ship.collision_mask = 1
 
+	for child in get_children():
+		child.queue_free()
+
 func weapon_hit(body):
 	self.score += 10
 	#body.queue_free()
@@ -155,6 +158,8 @@ func timer_timeout():
 
 func astroid_collision(target, astroid):
 	if target.name == "Ship":
+		astroid.queue_free()
+		hud.show_smash()
 		self.lives -= 1
 		if lives == 0:
 			stop()

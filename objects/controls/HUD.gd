@@ -43,3 +43,10 @@ func show_idle():
 	$AnimationPlayer/MainMessage.text = "planetoids"
 	$AnimationPlayer/SubMessage.text = "1 cookie 1 play"
 	$AnimationPlayer.play("Continuously")
+
+func show_smash():
+	$AnimationPlayer.stop()
+
+	$AnimationPlayer/MainMessage.text = "smashed!"
+	$AnimationPlayer/SubMessage.text = "the doom is coming"
+	$AnimationPlayer.play("Single")
