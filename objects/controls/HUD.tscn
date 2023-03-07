@@ -247,7 +247,7 @@ custom_fonts/font = ExtResource( 2 )
 
 [node name="Level" type="Label" parent="."]
 margin_left = 320.0
-margin_right = 960.0
+margin_right = 400.0
 margin_bottom = 33.0
 grow_horizontal = 2
 custom_colors/font_color = Color( 0, 0.666667, 0.333333, 1 )
@@ -255,8 +255,8 @@ custom_fonts/font = ExtResource( 2 )
 align = 1
 
 [node name="Lives" type="Label" parent="."]
-margin_left = 960.0
-margin_right = 1280.0
+margin_left = 400.0
+margin_right = 720.0
 margin_bottom = 33.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 177, 53 )
@@ -265,19 +265,19 @@ custom_fonts/font = ExtResource( 2 )
 align = 2
 
 [node name="FooterLeft" type="Label" parent="."]
-margin_top = 704.0
-margin_right = 540.0
-margin_bottom = 720.0
+margin_top = 1264.0
+margin_right = 360.0
+margin_bottom = 1280.0
 rect_pivot_offset = Vector2( 1317, 284 )
 custom_colors/font_color = Color( 0, 0.666667, 0.333333, 1 )
 custom_fonts/font = ExtResource( 4 )
 valign = 2
 
 [node name="FooterRight" type="Label" parent="."]
-margin_left = 740.0
-margin_top = 704.0
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_left = 360.0
+margin_top = 1264.0
+margin_right = 720.0
+margin_bottom = 1280.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 177, 53 )
 custom_colors/font_color = Color( 0, 0.666667, 0.333333, 1 )
@@ -291,10 +291,9 @@ anims/RESET = SubResource( 1 )
 anims/Single = SubResource( 2 )
 
 [node name="SubMessage" type="Label" parent="AnimationPlayer"]
-margin_left = 161.0
-margin_top = 423.5
-margin_right = 1121.0
-margin_bottom = 456.5
+margin_top = 514.5
+margin_right = 720.0
+margin_bottom = 547.5
 grow_horizontal = 2
 grow_vertical = 2
 custom_colors/font_color = Color( 1, 0.74902, 0, 1 )
@@ -305,10 +304,9 @@ valign = 1
 percent_visible = 0.0
 
 [node name="MainMessage" type="Label" parent="AnimationPlayer"]
-margin_left = 160.0
-margin_top = 284.0
-margin_right = 1120.0
-margin_bottom = 349.0
+margin_top = 319.0
+margin_right = 720.0
+margin_bottom = 384.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_colors/font_color = Color( 1, 0.74902, 0, 1 )

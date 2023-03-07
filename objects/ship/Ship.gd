@@ -12,6 +12,18 @@ export (int) var torque_impulse = 300
 
 onready var viewport_size = get_viewport_rect().size
 
+func do_spawn():
+	$ExplosionTimer.stop()
+	$ExplosionParticles.emitting = false
+	$CollisionPolygon2D.disabled = false
+	$Sprite.show()
+
+func do_explode():
+	$CollisionPolygon2D.disabled = true
+	$Sprite.hide()
+	$ExplosionParticles.emitting = true
+	$ExplosionTimer.start()
+
 func _on_Laser_body_entered(body : Node, bullet):
 	# do not react when hitting the ship
 	if body != self:

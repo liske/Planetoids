@@ -95,6 +95,8 @@ func start():
 	for child in get_children():
 		child.queue_free()
 
+	self.ship.do_spawn()
+
 func weapon_hit(body):
 	self.score += 10
 	#body.queue_free()
@@ -160,7 +162,11 @@ func astroid_collision(target, astroid):
 	if target.name == "Ship":
 		astroid.queue_free()
 		hud.show_smash()
+		self.ship.do_explode()
 		self.lives -= 1
 		if lives == 0:
 			stop()
+		else:
+			for child in get_children():
+				child.queue_free()
 
