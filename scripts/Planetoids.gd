@@ -162,7 +162,7 @@ func astroid_collision(target, astroid):
 	if target.name == "Ship":
 		astroid.queue_free()
 		hud.show_smash()
-		self.ship.do_explode()
+		self.ship.call_deferred("do_explode", self.lives > 1)
 		self.lives -= 1
 		if lives == 0:
 			stop()

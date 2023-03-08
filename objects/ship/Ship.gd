@@ -2,7 +2,10 @@ extends RigidBody2D
 
 onready var Bullet = preload("res://objects/weapon/Laser.tscn")
 
+var ANIM_RESPAWN = "respawn"
+
 var velocity : Vector2
+var can_die : bool
 
 export (int) var max_linear_velocity = 400
 export (Vector2) var linear_thrust = Vector2(30, 0)
@@ -13,16 +16,39 @@ export (int) var torque_impulse = 300
 onready var viewport_size = get_viewport_rect().size
 
 func do_spawn():
-	$ExplosionTimer.stop()
+	self.can_die = false
+	self.enable_collisions()
+
+	self.position.x	= viewport_size.x/4 + randi() % int(viewport_size.x/2)
+	self.position.y	= viewport_size.y/4 + randi() % int(viewport_size.y/2)
+	self.rotation = randf()*2*PI
+	
 	$ExplosionParticles.emitting = false
-	$CollisionPolygon2D.disabled = false
+	$RespawnTimer.stop()
+	$AnimationPlayer.play(ANIM_RESPAWN)
 	$Sprite.show()
 
-func do_explode():
-	$CollisionPolygon2D.disabled = true
+func do_explode(respawn=false):
+	self.disable_collisions()
 	$Sprite.hide()
 	$ExplosionParticles.emitting = true
-	$ExplosionTimer.start()
+	if respawn:
+		$RespawnTimer.start()
+
+func disable_collisions():
+	self.collision_layer = 0
+	self.collision_mask = 0
+
+func enable_collisions():
+	self.collision_layer = 2
+	self.collision_mask = 1
+
+func _on_RespawnTimer_timeout():
+	self.do_spawn()
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == ANIM_RESPAWN:
+		self.can_die = true
 
 func _on_Laser_body_entered(body : Node, bullet):
 	# do not react when hitting the ship
