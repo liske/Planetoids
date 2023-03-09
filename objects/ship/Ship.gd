@@ -18,6 +18,7 @@ onready var viewport_size = get_viewport_rect().size
 func do_spawn():
 	self.can_die = false
 	self.enable_collisions()
+	self.enable_supershield()
 
 	self.position.x	= viewport_size.x/4 + randi() % int(viewport_size.x/2)
 	self.position.y	= viewport_size.y/4 + randi() % int(viewport_size.y/2)
@@ -30,6 +31,7 @@ func do_spawn():
 
 func do_explode(respawn=false):
 	self.disable_collisions()
+	self.disable_supershield()
 	$Sprite.hide()
 	$ExplosionParticles.emitting = true
 	if respawn:
@@ -43,12 +45,21 @@ func enable_collisions():
 	self.collision_layer = 2
 	self.collision_mask = 1
 
+func enable_supershield():
+	$SuperShieldCollisionShape2D.set_disabled(false)
+	$SuperShieldSprite.show()
+
+func disable_supershield():
+	$SuperShieldCollisionShape2D.set_disabled(true)
+	$SuperShieldSprite.hide()
+
 func _on_RespawnTimer_timeout():
 	self.do_spawn()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == ANIM_RESPAWN:
 		self.can_die = true
+		self.disable_supershield()
 
 func _on_Laser_body_entered(body : Node, bullet):
 	# do not react when hitting the ship
