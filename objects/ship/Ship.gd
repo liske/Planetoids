@@ -6,6 +6,7 @@ var ANIM_RESPAWN = "respawn"
 
 var velocity : Vector2
 var can_die : bool
+var can_control: bool
 
 export (int) var max_linear_velocity = 400
 export (Vector2) var linear_thrust = Vector2(30, 0)
@@ -17,6 +18,7 @@ onready var viewport_size = get_viewport_rect().size
 
 func do_spawn():
 	self.can_die = false
+	self.can_control = true
 	self.enable_collisions()
 	self.enable_supershield()
 
@@ -30,9 +32,11 @@ func do_spawn():
 	$Sprite.show()
 
 func do_explode(respawn=false):
+	self.can_control = false
 	self.disable_collisions()
 	self.disable_supershield()
 	$Sprite.hide()
+	$Sprite/CPUParticles2D.emitting = false
 	$ExplosionParticles.emitting = true
 	if respawn:
 		$RespawnTimer.start()
@@ -67,6 +71,9 @@ func _on_Laser_body_entered(body : Node, bullet):
 		planetoids.laser_hit_astroid(bullet, body)
 
 func _integrate_forces(state):
+	if not can_control:
+		return
+
 	if Input.is_action_pressed("boost"):
 		$Sprite/CPUParticles2D.emitting = true
 		if linear_velocity.length() < max_linear_velocity:
@@ -90,10 +97,16 @@ func _physics_process(_delta):
 	position.x = wrapf(position.x, 0, viewport_size.x)
 	position.y = wrapf(position.y, 0, viewport_size.y)
 
-	if Input.is_action_just_pressed("shoot"):
+	if can_control and Input.is_action_just_pressed("shoot"):
 		var bullet = Bullet.instance()
 		get_parent().add_child(bullet)
 		bullet.global_rotation = $Position2D_Gun.global_rotation
 		bullet.global_position = $Position2D_Gun.global_position
 		bullet.apply_central_impulse(Vector2.RIGHT.rotated(rotation) * 600)
 		bullet.connect("body_entered", self, "_on_Laser_body_entered", [bullet])
+
+func _ready():
+	self.can_control = false
+	self.disable_supershield()
+	self.disable_collisions()
+	$Sprite.hide()

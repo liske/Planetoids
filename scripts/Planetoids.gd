@@ -75,22 +75,12 @@ func stop():
 
 	hud.show_idle()
 
-	self.ship.visible = false
-	self.ship.collision_layer = 2
-	self.ship.collision_mask = 0
-	self.ship.position.x = 640
-	self.ship.position.y = 360
-
 func start():
 	self.idle = false
 
 	self.level = 1
 	self.lives = 3
 	self.score = 0
-
-	self.ship.visible = true
-	self.ship.collision_layer = 1
-	self.ship.collision_mask = 1
 
 	for child in get_children():
 		child.queue_free()
