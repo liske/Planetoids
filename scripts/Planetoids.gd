@@ -159,7 +159,7 @@ func timer_timeout():
 	astroid.add_torque(-400 + rng.randi() % 800)
 
 func astroid_collision(target, astroid):
-	if target.name == "Ship":
+	if target.name == "Ship" and target.can_die:
 		astroid.queue_free()
 		hud.show_smash()
 		self.ship.call_deferred("do_explode", self.lives > 1)
