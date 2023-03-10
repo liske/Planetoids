@@ -14,6 +14,15 @@ var viewport_size: Vector2
 var hud
 var ship
 
+var level_slogans = [
+	"to easy to fail",
+	"most get this far",
+	"you better give up",
+	"you will stop now",
+	"you shall not pass",
+	"you are a bug in the game"
+]
+
 var ASTROID_OFFSET = -200
 
 func _ready():
@@ -79,7 +88,7 @@ func start():
 	self.idle = false
 
 	self.level = 1
-	self.lives = 3
+	self.lives = 1 #3
 	self.score = 0
 
 	for child in get_children():
@@ -151,12 +160,34 @@ func timer_timeout():
 func astroid_collision(target, astroid):
 	if target.name == "Ship" and target.can_die:
 		astroid.queue_free()
-		hud.show_smash()
 		self.ship.call_deferred("do_explode", self.lives > 1)
 		self.lives -= 1
 		if lives == 0:
 			stop()
+			var new_highscore = highscore.check_highscore(self.score)
+			hud.show_end(new_highscore)
 		else:
+			hud.show_smash()
 			for child in get_children():
 				child.queue_free()
 
+func level_slogan(level) -> String:
+	level -= 1
+
+	if level in range(0, level_slogans.size()):
+		return level_slogans[level]
+	else:
+		return "hahahahahhahahaha"
+
+func username_input(player):
+	hud.show_idle()
+
+	highscore.add_highscore(self.score, self.level, player)
+
+	network.send_event({
+		'event': 'highscore',
+		'score': self.score,
+		'level': self.level,
+		'slogan': level_slogan(self.level),
+		'player': player,
+	})
