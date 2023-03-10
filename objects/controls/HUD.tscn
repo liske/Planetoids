@@ -1,20 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/fonts/MajorMonoDisplay LARGE.tres" type="DynamicFont" id=1]
 [ext_resource path="res://objects/fonts/MajorMonoDisplay SMALL.tres" type="DynamicFont" id=2]
 [ext_resource path="res://objects/controls/HUD.gd" type="Script" id=3]
 [ext_resource path="res://objects/fonts/MajorMonoDisplay TINY.tres" type="DynamicFont" id=4]
+[ext_resource path="res://objects/fonts/MajorMonoDisplay MEDIUM.tres" type="DynamicFont" id=5]
+[ext_resource path="res://objects/fonts/MajorMonoDisplay SMALLER.tres" type="DynamicFont" id=6]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Continuously"
-length = 10.0
+length = 12.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimationPlayer/MainMessage:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 6 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -28,7 +30,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 4, 10 ),
+"times": PoolRealArray( 0, 6, 7.9, 11.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.05, 0.0, 1.0, 1.0 ]
@@ -38,7 +40,7 @@ tracks/2/path = NodePath("AnimationPlayer/SubMessage:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0, 6 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -52,10 +54,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 4, 6, 11.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1.0, 1.0 ]
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("AnimationPlayer/SubMessage:modulate")
@@ -64,10 +66,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.1, 4, 6, 10 ),
+"times": PoolRealArray( 0, 4, 6, 10 ),
 "transitions": PoolRealArray( 1, 1.5, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("AnimationPlayer/MainMessage:modulate")
@@ -76,10 +78,34 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.1, 1, 6, 10 ),
+"times": PoolRealArray( 0, 4, 6, 10 ),
 "transitions": PoolRealArray( 1, 2, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimationPlayer/HighscoreTitle:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 4, 6, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AnimationPlayer/HighscoreText:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 4, 6, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -241,7 +267,7 @@ tracks/0/path = NodePath("AnimationPlayer/MainMessage:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 6 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -265,7 +291,7 @@ tracks/2/path = NodePath("AnimationPlayer/SubMessage:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0, 6 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -291,7 +317,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.1, 4, 6 ),
+"times": PoolRealArray( 0.25, 4, 6 ),
 "transitions": PoolRealArray( 1, 1.5, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
@@ -303,10 +329,34 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.1, 1, 6 ),
+"times": PoolRealArray( 0.25, 1, 6 ),
 "transitions": PoolRealArray( 1, 2, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimationPlayer/HighscoreTitle:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AnimationPlayer/HighscoreText:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="HUD" type="Control"]
@@ -422,5 +472,42 @@ context_menu_enabled = false
 clear_button_enabled = true
 deselect_on_focus_loss_enabled = false
 caret_blink = true
+
+[node name="HighscoreTitle" type="Label" parent="AnimationPlayer"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.35
+margin_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.74902, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "-=[  H i g h s c o r e  ]=-"
+align = 1
+valign = 1
+
+[node name="HighscoreText" type="Label" parent="AnimationPlayer"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.1
+anchor_top = 0.35
+anchor_right = 0.9
+anchor_bottom = 0.35
+margin_top = 90.0
+margin_bottom = 373.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 6 )
+text = "# | score | level | player
+---+-------+-------+-------------------
+ 1.|      1|     2 | @liske
+ 2.|      1|     2 | @liske
+ 3.|      1|     2 | @liske
+ 4.|      1|     2 | @liske
+ 5.|      1|     2 | @liske
+ 6.|      1|     2 | @liske
+ 7.|      1|     2 | @liske
+ 8.|      1|     2 | @liske
+ 9.|      1|     2 | @liske
+10.|      1|     2 | @liske"
 
 [connection signal="text_entered" from="AnimationPlayer/TextEdit" to="." method="_on_TextEdit_text_entered"]
