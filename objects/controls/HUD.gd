@@ -24,6 +24,22 @@ func set_footer_left(text):
 func set_footer_right(text):
 	$AnimationPlayer/FooterRight.text = text
 
+func update_highscore(highscore):
+	var highscore_table = [
+		"  #  | level |  score  | player",
+		"-----+-------+---------+--------------------------------",
+	]
+
+	var pos = 1
+	for hs in highscore:
+		highscore_table.append(" %2d. |   %02d  | %6d  | %s" % [pos, hs.level, hs.score, hs.player.to_lower()])
+		pos += 1
+
+	if highscore_table.size() < 3:
+		highscore_table.append(" %2d. |   %02d  | %6d  | %s" % [1, 1, 0, "hAl 9000"])
+
+	$AnimationPlayer/HighscoreText.text = "\n".join(highscore_table)
+
 func show_idle():
 	$AnimationPlayer.stop()
 
@@ -32,21 +48,6 @@ func show_idle():
 
 	$AnimationPlayer/MainMessage.text = "planetoids"
 	$AnimationPlayer/SubMessage.text = "1 cookie 1 play"
-
-	var highscore_table = [
-		"  #  | level |  score  | player",
-		"-----+-------+---------+--------------------------------",
-	]
-
-	var pos = 1
-	for hs in highscore.load_highscore():
-		highscore_table.append(" %2d. |   %02d  | %6d  | %s" % [pos, hs.level, hs.score, hs.player.to_lower()])
-		pos += 1
-
-	if highscore_table.size() < 3:
-		highscore_table.append(" %2d. |   %02d  | %6d  | %s" % [1, 1, 0, "hAl 9000"])
-
-	$AnimationPlayer/HighscoreText.text = "\n".join(highscore_table)
 
 	$AnimationPlayer.play("Continuously")
 

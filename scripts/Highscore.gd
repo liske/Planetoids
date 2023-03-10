@@ -1,7 +1,14 @@
 extends Node
 
+var hud
+
 var HIGHSCORE_FN = 'user://highscore.json'
 var HIGHSCORE_MAX_ENTRIES = 3
+
+func setup(_hud):
+	self.hud = _hud
+
+	hud.update_highscore(self.load_highscore())
 
 func load_highscore():
 	var highscores = []
@@ -32,6 +39,8 @@ func add_highscore(score, level, player):
 	if file.open(HIGHSCORE_FN, File.WRITE) == OK:
 		file.store_string(JSON.print(highscores))
 		file.close()
+
+	hud.update_highscore(highscores)
 
 func get_highscore_position(score):
 	var highscores = load_highscore()

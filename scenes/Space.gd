@@ -1,6 +1,8 @@
 extends Node2D
 
 func _ready():
+	highscore.setup($HUD)
+
 	planetoids.setup(
 		# main scene object
 		self,
