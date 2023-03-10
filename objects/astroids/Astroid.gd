@@ -3,6 +3,7 @@ extends RigidBody2D
 export (float) var scaling = 1.0 setget _scaling_set
 
 func _ready():
+	# warning-ignore:return_value_discarded
 	connect("body_entered", planetoids, "astroid_collision", [self])
 	#$Explosion/Timer_Free.connect("timeout", self, "_on_Timer_Free_timeout")
 

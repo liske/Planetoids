@@ -171,11 +171,11 @@ func astroid_collision(target, astroid):
 			for child in get_children():
 				child.queue_free()
 
-func level_slogan(level) -> String:
-	level -= 1
+func level_slogan(lvl) -> String:
+	lvl -= 1
 
-	if level in range(0, level_slogans.size()):
-		return level_slogans[level]
+	if lvl in range(0, level_slogans.size()):
+		return level_slogans[lvl]
 	else:
 		return "hahahahahhahahaha"
 
