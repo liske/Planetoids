@@ -25,9 +25,10 @@ planetoids="*res://scripts/Planetoids.gd"
 window/size/width=720
 window/size/height=1280
 window/size/borderless=true
+window/size/fullscreen=true
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [editor]
 

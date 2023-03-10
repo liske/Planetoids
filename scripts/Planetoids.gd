@@ -90,7 +90,7 @@ func start():
 	self.eog = false
 
 	self.level = 1
-	self.lives = 1 #3
+	self.lives = 3
 	self.score = 0
 
 	for child in get_children():
