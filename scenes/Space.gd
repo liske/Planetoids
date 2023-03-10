@@ -19,8 +19,8 @@ func _ready():
 	planetoids.stop()
 
 func _input(_event):
-	if planetoids.idle:
-		if Input.is_action_just_pressed("shoot"):
+	if not planetoids.eog:
+		if Input.is_action_just_pressed("spawn"):
 			planetoids.start()
 
 func _on_Timer_timeout():

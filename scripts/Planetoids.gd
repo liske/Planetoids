@@ -3,6 +3,7 @@ extends Node
 var config: ConfigFile
 var astroids: Array
 var idle : bool
+var eog: bool
 var level: int setget _level_set
 var lives: int setget _lives_set
 var rng = RandomNumberGenerator.new()
@@ -86,6 +87,7 @@ func stop():
 
 func start():
 	self.idle = false
+	self.eog = false
 
 	self.level = 1
 	self.lives = 1 #3
@@ -163,9 +165,13 @@ func astroid_collision(target, astroid):
 		self.ship.call_deferred("do_explode", self.lives > 1)
 		self.lives -= 1
 		if lives == 0:
+			self.eog = true
 			stop()
 			var new_highscore = highscore.check_highscore(self.score)
 			hud.show_end(new_highscore)
+
+			if not new_highscore:
+				self.eog = false
 		else:
 			hud.show_smash()
 			for child in get_children():
@@ -191,3 +197,5 @@ func username_input(player):
 		'slogan': level_slogan(self.level),
 		'player': player,
 	})
+
+	self.eog = false
