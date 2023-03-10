@@ -484,19 +484,17 @@ grow_horizontal = 2
 grow_vertical = 2
 custom_colors/font_color = Color( 1, 0.74902, 0, 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "-=[  H i g h s c o r e  ]=-"
+text = "-=[ Highscore ]=-"
 align = 1
 valign = 1
 
 [node name="HighscoreText" type="Label" parent="AnimationPlayer"]
 modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.1
 anchor_top = 0.35
-anchor_right = 0.9
+anchor_right = 1.0
 anchor_bottom = 0.35
 margin_top = 90.0
 margin_bottom = 373.0
-grow_horizontal = 2
 custom_colors/font_color = Color( 0, 1, 1, 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "# | score | level | player
