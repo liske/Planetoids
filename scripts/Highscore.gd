@@ -3,7 +3,7 @@ extends Node
 var hud
 
 var HIGHSCORE_FN = 'user://highscore.json'
-var HIGHSCORE_MAX_ENTRIES = 3
+var HIGHSCORE_MAX_ENTRIES = 10
 
 func setup(_hud):
 	self.hud = _hud
