@@ -134,7 +134,8 @@ func spawn_astroid(_scale, _max_scale=2) -> RigidBody2D:
 	# scale it
 	astroid.scaling = min(rng.randfn(_scale, 0.25) + 0.25, _max_scale)
 	astroid.mass = 100*astroid.scaling*astroid.scaling
-	
+	astroid.ttl = int(astroid.mass / 15)
+
 	add_child(astroid)
 	
 	return astroid
@@ -160,22 +161,25 @@ func timer_timeout():
 	astroid.add_torque(-400 + rng.randi() % 800)
 
 func astroid_collision(target, astroid):
-	if target.name == "Ship" and target.can_die:
-		astroid.queue_free()
-		self.ship.call_deferred("do_explode", self.lives > 1)
-		self.lives -= 1
-		if lives == 0:
-			self.eog = true
-			stop()
-			var new_highscore = highscore.check_highscore(self.score)
-			hud.show_end(new_highscore)
+	if target.name == "Ship":
+		if target.can_die:
+			astroid.queue_free()
+			self.ship.call_deferred("do_explode", self.lives > 1)
+			self.lives -= 1
+			if lives == 0:
+				self.eog = true
+				stop()
+				var new_highscore = highscore.check_highscore(self.score)
+				hud.show_end(new_highscore)
 
-			if not new_highscore:
-				self.eog = false
-		else:
-			hud.show_smash()
-			for child in get_children():
-				child.queue_free()
+				if not new_highscore:
+					self.eog = false
+			else:
+				hud.show_smash()
+				for child in get_children():
+					child.queue_free()
+	else:
+		astroid.check_ttl()
 
 func level_slogan(lvl) -> String:
 	lvl -= 1

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 export (float) var scaling = 1.0 setget _scaling_set
+var ttl = 10
 
 func _ready():
 	# warning-ignore:return_value_discarded
@@ -25,6 +26,11 @@ func _on_VisibilityNotifier2D_screen_exited():
 func explode():
 	queue_free()
 	return
+
+func check_ttl():
+	self.ttl -= 1
+	if not self.ttl > 0:
+		self.explode()
 
 	#$Explosion/CPUParticles2D.emitting = true
 	#$Sprite.hide()
