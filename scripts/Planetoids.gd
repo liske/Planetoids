@@ -4,16 +4,19 @@ var config: ConfigFile
 var astroids: Array
 var idle : bool
 var eog: bool
+var has_powerup: bool
 var level: int setget _level_set
 var lives: int setget _lives_set
 var rng = RandomNumberGenerator.new()
 var score: int setget _score_set
 var _level_score: int
+var powerup
 
 var viewport_size: Vector2
 
 var hud
 var ship
+var space
 
 var level_slogans = [
 	"to easy to fail",
@@ -56,7 +59,9 @@ func _viewport_changed(scene):
 func setup(_scene, _hud, _ship, _astroids):
 	self.hud = _hud
 	self.ship = _ship
+	self.space = _scene
 	self.astroids = _astroids
+	self.powerup = preload("res://objects/powerups/PowerUp.tscn")
 
 	# hide mouse cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -92,6 +97,7 @@ func start():
 	self.level = 1
 	self.lives = 3
 	self.score = 0
+	self.has_powerup = false
 
 	for child in get_children():
 		child.queue_free()
@@ -102,6 +108,13 @@ func weapon_hit(body):
 	self.score += 10
 	#body.queue_free()
 	body.explode()
+
+#	ToDo: randomly spawn power ups
+#	if not self.has_powerup and randf() < 0.02:
+	if false:
+		self.has_powerup = true
+		self.powerup.instance()
+		self.space.add_child(self.powerup)
 
 func laser_hit_astroid(laser : RigidBody2D, astroid : RigidBody2D):
 	var scaling = astroid.scaling

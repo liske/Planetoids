@@ -1,6 +1,9 @@
 extends RigidBody2D
 
-onready var Bullet = preload("res://objects/weapon/Laser.tscn")
+onready var Laser = preload("res://objects/weapon/Laser.tscn")
+onready var Sonic = preload("res://objects/weapon/Sonic.tscn")
+# ToDo: support different weapon types, depending on power up
+onready var Bullet = Laser
 
 var ANIM_RESPAWN = "respawn"
 

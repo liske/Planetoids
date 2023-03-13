@@ -16,6 +16,7 @@ func _ready():
 			preload("res://objects/astroids/Astroid2.tscn"),
 			preload("res://objects/astroids/Astroid3.tscn"),
 		])
+
 	planetoids.stop()
 
 func _input(_event):
